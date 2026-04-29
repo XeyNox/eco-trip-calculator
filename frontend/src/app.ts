@@ -2,11 +2,11 @@ var apiUrl = 'http://localhost:3000/api';
 var currentResult: any = null;
 
 function calculate(): any {
-    var d: any = (document.getElementById('distance') as HTMLInputElement).value;
-    var t: any = (document.getElementById('transport') as HTMLSelectElement).value;
-    var ct: any = (document.getElementById('carType') as HTMLSelectElement).value;
-    var p: any = (document.getElementById('passengers') as HTMLInputElement).value;
-    var c: any = (document.getElementById('country') as HTMLSelectElement).value;
+    var distance: any = (document.getElementById('distance') as HTMLInputElement).value;
+    var transport: any = (document.getElementById('transport') as HTMLSelectElement).value;
+    var carType: any = (document.getElementById('carType') as HTMLSelectElement).value;
+    var passengers: any = (document.getElementById('passengers') as HTMLInputElement).value;
+    var country: any = (document.getElementById('country') as HTMLSelectElement).value;
 
     fetch(apiUrl + '/calculate', {
         method: 'POST',
@@ -14,11 +14,11 @@ function calculate(): any {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-            distance: parseFloat(d),
-            transport: t,
-            carType: ct,
-            passengers: parseInt(p) || 1,
-            country: c
+            distance: parseFloat(distance),
+            transport: transport,
+            carType: carType,
+            passengers: parseInt(passengers) || 1,
+            country: country
         })
     })
     .then(function(response) {
