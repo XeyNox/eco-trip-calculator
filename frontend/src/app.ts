@@ -2,10 +2,10 @@ let apiUrl = 'http://localhost:3000/api';
 let currentResult: any = null;
 
 function calculate(): any {
-    let distance: string = (document.getElementById('distance') as HTMLInputElement).value;
+    let distance: number = (document.getElementById('distance') as HTMLInputElement).valueAsNumber;
     let transportType: string = (document.getElementById('transport') as HTMLSelectElement).value;
     let carType: string = (document.getElementById('carType') as HTMLSelectElement).value;
-    let passengers: string = (document.getElementById('passengers') as HTMLInputElement).value;
+    let passengers: number = (document.getElementById('passengers') as HTMLInputElement).valueAsNumber;
     let country: string = (document.getElementById('country') as HTMLSelectElement).value;
 
     fetch(apiUrl + '/calculate', {
@@ -14,10 +14,10 @@ function calculate(): any {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-            distance: parseFloat(distance),
+            distance: distance,
             transport: transportType,
             carType: carType,
-            passengers: parseInt(passengers) || 1,
+            passengers: passengers || 1,
             country: country
         })
     })
