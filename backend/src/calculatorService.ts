@@ -1,23 +1,24 @@
 class CalculatorService {
-  calculate(d: any, t: any, ct: any, p: any, c: any): any {
+  calculate(distance: any, transportType: any, carType: any, passenger: any, country: any): any {
     var result = 0;
-    var lbl = '';
+    var label = '';
 
-    if (t === 'bike' || t === 'walk') {
+    // Still nested if-else hell
+    if (transportType === 'bike' || transportType === 'walk') {
       result = 0;
-      lbl = 'GREEN';
-    } else if (t === 'car') {
-      result = this._calculateCar(d, ct, p, c);
-      lbl = this._getLabel(result);
-    } else if (t === 'train') {
-      result = this._calculateTrain(d, c);
-      lbl = this._getLabel(result);
-    } else if (t === 'bus') {
-      result = d * 0.104;
-      lbl = this._getLabel(result);
+      label = 'GREEN';
+    } else if (transportType === 'car') {
+      result = this._calculateCar(distance, carType, passenger, country);
+      label = this._getLabel(result);
+    } else if (transportType === 'train') {
+      result = this._calculateTrain(distance, country);
+      label = this._getLabel(result);
+    } else if (transportType === 'bus') {
+      result = distance * 0.104;
+      label = this._getLabel(result);
     }
 
-    return { co2: result, label: lbl };
+    return { co2: result, label: label };
   }
 
   _calculateCar(d: any, ct: any, p: any, c: any): number {
